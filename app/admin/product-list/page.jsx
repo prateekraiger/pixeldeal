@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import { assets, productsDummyData } from "@/assets/assets";
 import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
-import Footer from "@/components/seller/Footer";
-import Loading from "@/components/Loading";
 
 const ProductList = () => {
   const { router } = useAppContext();
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +21,7 @@ const ProductList = () => {
   return (
     <div className="flex-1 min-h-screen flex flex-col justify-between">
       {loading ? (
-        <Loading />
+        <div>Loading...</div>
       ) : (
         <div className="w-full md:p-10 p-4">
           <h2 className="pb-4 text-lg font-medium">All Product</h2>
@@ -83,7 +80,6 @@ const ProductList = () => {
           </div>
         </div>
       )}
-      <Footer />
     </div>
   );
 };

@@ -13,6 +13,7 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Add your product submission logic here
   };
 
   return (

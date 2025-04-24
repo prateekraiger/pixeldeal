@@ -26,7 +26,7 @@ export default function AdminLogin() {
       if (response.ok) {
         // Set a session cookie or token to maintain admin login state
         localStorage.setItem("adminLoggedIn", "true");
-        router.push("/admin/dashboard");
+        router.push("/admin");
       } else {
         setError(data.message || "Invalid credentials");
       }

@@ -32,24 +32,13 @@ const Navbar = () => {
         <Link href="/contact" className="hover:text-gray-900 transition text-base">
           Contact
         </Link>
-
-        {isSeller && (
-          <button
-            onClick={() => router.push("/seller")}
-            className="text-sm border px-4 py-1.5 rounded-full"
-          >
-            Seller Dashboard
-          </button>
-        )}
-        
         <button
           onClick={() => router.push("/admin/login")}
-          className="text-sm border px-4 py-1.5 rounded-full bg-orange-600 text-white hover:bg-orange-700"
+          className="text-sm border px-4 py-1.5 rounded-full ml-1"
         >
-          Admin Dashboard
+          Admin Panel
         </button>
       </div>
-
       <ul className="hidden md:flex items-center gap-4">
         <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
         
@@ -101,14 +90,12 @@ const Navbar = () => {
           )}
         </div>
         
-        {isSeller && (
-          <button
-            onClick={() => router.push("/seller")}
-            className="text-xs border px-4 py-1.5 rounded-full"
-          >
-            Seller Dashboard
-          </button>
-        )}
+        <button
+          onClick={() => router.push("/admin")}
+          className="text-xs border px-4 py-1.5 rounded-full"
+        >
+          Admin Panel
+        </button>
         <button
           onClick={openSignIn}
           className="flex items-center gap-2 hover:text-gray-900 transition"
