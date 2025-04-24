@@ -21,7 +21,7 @@ import heart_icon from "./heart_icon.svg";
 import increase_arrow from "./increase_arrow.svg";
 import instagram_icon from "./instagram_icon.svg";
 import jbl_soundbox_image from "./jbl_soundbox_image.png";
-import pixeldeallogo from "./pixeldeallogo.png";
+import nextgadgetlogo from "./nextgadgetlogo.png";
 import macbook_image from "./macbook_image.png";
 import md_controller_image from "./md_controller_image.png";
 import menu_icon from "./menu_icon.svg";
@@ -48,7 +48,7 @@ import user_icon from "./user_icon.svg";
 import venu_watch_image from "./venu_watch_image.png";
 
 export const assets = {
-  logo: pixeldeallogo,
+  logo: nextgadgetlogo,
   search_icon,
   user_icon,
   cart_icon,
@@ -278,7 +278,7 @@ export const productsDummyData = [
 
 export const userDummyData = {
   "_id": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-  "name": "Pixeldeal",
+  "name": "NextGadget",
   "email": "admin@example.com",
   "imageUrl": "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18ycnlnUnFiUDBYT2dEZ2h1ZmRXcGlpdWV5OXoiLCJyaWQiOiJ1c2VyXzJzWkZIUzFVSUl5c0p5RFZ6Q3BRaFVoVElodyJ9",
   "cartItems": {
@@ -318,7 +318,7 @@ export const orderDummyData = [
     "address": {
       "_id": "67a1e4233f34a77b6dde9055",
       "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-      "fullName": "Pixeldeal",
+      "fullName": "NextGadget",
       "phoneNumber": "0123456789",
       "pincode": 654321,
       "area": "Main Road , 123 Street, G Block",
@@ -357,7 +357,7 @@ export const orderDummyData = [
     "address": {
       "_id": "67a1e4233f34a77b6dde9055",
       "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-      "fullName": "Pixeldeal",
+      "fullName": "NextGadget",
       "phoneNumber": "0123456789",
       "pincode": 654321,
       "area": "Main Road , 123 Street, G Block",
@@ -399,7 +399,7 @@ export const orderDummyData = [
     "address": {
       "_id": "67a1e4233f34a77b6dde9055",
       "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-      "fullName": "Pixeldeal",
+      "fullName": "NextGadget",
       "phoneNumber": "0123456789",
       "pincode": 654321,
       "area": "Main Road , 123 Street, G Block",
@@ -419,8 +419,8 @@ export const orderDummyData = [
         "product": {
           "_id": "67a1f5e23f34a77b6dde914b",
           "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-          "name": "PixelDeal Mechanical Keyboard",
-          "description": "The PixelDeal Mechanical Keyboard offers a tactile typing experience with customizable RGB backlighting. Perfect for gamers and typists alike, it features durable switches and a sleek design.",
+          "name": "NextGadget Mechanical Keyboard",
+          "description": "The NextGadget Mechanical Keyboard offers a tactile typing experience with customizable RGB backlighting. Perfect for gamers and typists alike, it features durable switches and a sleek design.",
           "price": 899.99,
           "offerPrice": 699.99,
           "image": [
@@ -438,7 +438,7 @@ export const orderDummyData = [
     "address": {
       "_id": "67a1e4233f34a77b6dde9055",
       "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-      "fullName": "PixelDeal",
+      "fullName": "NextGadget",
       "phoneNumber": "+91 9497886789",
       "pincode": 654321,
       "area": "Main Road, 123 Street, G Block",
@@ -456,7 +456,7 @@ export const addressDummyData = [
   {
     "_id": "67a1e4233f34a77b6dde9055",
     "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
-    "fullName": "Pixeldeal",
+    "fullName": "NextGadget",
     "phoneNumber": "0123456789",
     "pincode": 654321,
     "area": "Main Road , 123 Street, G Block",

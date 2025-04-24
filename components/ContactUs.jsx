@@ -67,8 +67,8 @@ const ContactUs = () => {
               </div>
               <div>
                 <h3 className="font-medium">Phone</h3>
-                <p className="text-gray-600">+1 (234) 567-8901</p>
-                <p className="text-gray-600">+1 (234) 567-8902</p>
+                <p className="text-gray-600">+91 7890123456</p>
+                <p className="text-gray-600">+91 7890123456</p>
               </div>
             </div>
             
@@ -78,8 +78,8 @@ const ContactUs = () => {
               </div>
               <div>
                 <h3 className="font-medium">Email</h3>
-                <p className="text-gray-600">support@pixeldeal.com</p>
-                <p className="text-gray-600">info@pixeldeal.com</p>
+                <p className="text-gray-600">support@nextgadget.com</p>
+                <p className="text-gray-600">info@nextgadget.com</p>
               </div>
             </div>
             
@@ -91,8 +91,8 @@ const ContactUs = () => {
                 <h3 className="font-medium">Address</h3>
                 <p className="text-gray-600">
                   123 Tech Street, Suite 100<br />
-                  San Francisco, CA 94107<br />
-                  United States
+                  New Market 7<br />
+                  India
                 </p>
               </div>
             </div>
@@ -121,9 +121,6 @@ const ContactUs = () => {
               </a>
               <a href="#" className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition">
                 <Image src={assets.instagram_icon || "/instagram-icon.svg"} alt="Instagram" width={20} height={20} />
-              </a>
-              <a href="#" className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition">
-                <Image src={assets.linkedin_icon || "/linkedin-icon.svg"} alt="LinkedIn" width={20} height={20} />
               </a>
             </div>
           </div>

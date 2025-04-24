@@ -10,7 +10,7 @@ import "./globals.css";
 const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
 export const metadata = {
-  title: "PixelDeal - GreatStack",
+  title: "NextGadget ",
   description: "E-Commerce with Next.js ",
 };
 

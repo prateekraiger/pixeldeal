@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <div className="px-6 md:px-16 lg:px-32 py-12">
       <div className="w-full">
-        <h1 className="text-4xl font-bold text-center mb-6">About PixelDeal</h1>
+        <h1 className="text-4xl font-bold text-center mb-6">About NextGadget</h1>
         <p className="text-xl text-gray-600 text-center mb-12">
           Your Trusted Destination for Premium Electronics
         </p>
@@ -14,7 +14,7 @@ const AboutPage = () => {
           <div className="relative overflow-hidden rounded-xl mb-8 max-w-5xl mx-auto">
             <img 
               src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1200&auto=format" 
-              alt="PixelDeal Team" 
+              alt="NextGadget Team" 
               className="w-full h-auto"
             />
           </div>
@@ -22,13 +22,13 @@ const AboutPage = () => {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-semibold mb-4">Our Story</h2>
             <p className="text-gray-700 mb-4">
-              PixelDeal was founded in 2018 with a simple mission: to provide tech enthusiasts with premium electronic products at competitive prices. What began as a small online store has grown into a trusted destination for quality electronics, serving customers across the country.
+              NextGadget was founded in 2018 with a simple mission: to provide tech enthusiasts with premium electronic products at competitive prices. What began as a small online store has grown into a trusted destination for quality electronics, serving customers across the country.
             </p>
             <p className="text-gray-700 mb-4">
               Our founder, Sarah Chen, recognized a gap in the market for an electronics retailer that combines technical expertise with exceptional customer service. Drawing from her background in tech and e-commerce, she assembled a team of passionate tech lovers who share her vision of making the latest technology accessible to everyone.
             </p>
             <p className="text-gray-700">
-              Today, PixelDeal offers a carefully curated selection of electronic products, from cutting-edge laptops and smartphones to high-performance peripherals and accessories. We continue to grow and evolve, but our core values remain the same: quality, innovation, and customer satisfaction.
+              Today, NextGadget offers a carefully curated selection of electronic products, from cutting-edge laptops and smartphones to high-performance peripherals and accessories. We continue to grow and evolve, but our core values remain the same: quality, innovation, and customer satisfaction.
             </p>
           </div>
         </div>
@@ -38,7 +38,7 @@ const AboutPage = () => {
           <div className="bg-white rounded-lg p-6 shadow-sm border">
             <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
             <p className="text-gray-700">
-              At PixelDeal, our mission is to empower people through technology by providing premium electronic products, expert guidance, and exceptional customer service. We believe that the right tech tools can enhance productivity, creativity, and enjoyment in everyday life.
+              At NextGadget, our mission is to empower people through technology by providing premium electronic products, expert guidance, and exceptional customer service. We believe that the right tech tools can enhance productivity, creativity, and enjoyment in everyday life.
             </p>
           </div>
           
@@ -150,7 +150,7 @@ const AboutPage = () => {
         
         {/* Join Us CTA */}
         <div className="bg-brand-light rounded-xl p-8 text-center max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">Join the PixelDeal Community</h2>
+          <h2 className="text-2xl font-bold mb-4">Join the NextGadget Community</h2>
           <p className="text-gray-700 mb-6">
             Stay updated on the latest tech trends, product launches, and exclusive deals.
           </p>
