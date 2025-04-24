@@ -20,23 +20,23 @@ const Navbar = () => {
       />
 
       <div className="flex items-center gap-4 lg:gap-8 max-md:hidden">
-        <Link href="/" className="hover:text-gray-900 transition">
+        <Link href="/" className="hover:text-gray-900 transition text-base">
           Home
         </Link>
-        <Link href="/all-products" className="hover:text-gray-900 transition">
+        <Link href="/all-products" className="hover:text-gray-900 transition text-base">
           Shop
         </Link>
-        <Link href="/about" className="hover:text-gray-900 transition">
+        <Link href="/about" className="hover:text-gray-900 transition text-base">
           About Us
         </Link>
-        <Link href="/contact" className="hover:text-gray-900 transition">
+        <Link href="/contact" className="hover:text-gray-900 transition text-base">
           Contact
         </Link>
 
         {isSeller && (
           <button
             onClick={() => router.push("/seller")}
-            className="text-xs border px-4 py-1.5 rounded-full"
+            className="text-sm border px-4 py-1.5 rounded-full"
           >
             Admin Dashboard
           </button>
