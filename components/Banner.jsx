@@ -4,14 +4,29 @@ import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 
 const Banner = () => {
-  const { addToCart, router } = useAppContext();
+  const { addToCart, router, products } = useAppContext();
   
-  // Using a product ID for the JBL soundbox featured in the banner
-  const productId = "4"; // Assuming this is the ID for the JBL product
+  // Find a product related to gaming or audio to use for the banner
+  const getProductId = () => {
+    const product = products.find(p => 
+      p.name.toLowerCase().includes('jbl') || 
+      p.name.toLowerCase().includes('sound') ||
+      p.category.toLowerCase().includes('speaker')
+    );
+    
+    // Fallback to any product if no matching product found
+    return product ? product._id : (products.length > 0 ? products[0]._id : null);
+  };
   
   const handleBuyNow = () => {
-    addToCart(productId);
-    router.push("/cart");
+    const productId = getProductId();
+    if (productId) {
+      addToCart(productId);
+      router.push("/cart");
+    } else {
+      // Fallback to all products if no products available
+      router.push("/all-products");
+    }
   };
   
   return (
