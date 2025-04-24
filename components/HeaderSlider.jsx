@@ -4,35 +4,44 @@ import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 
 const HeaderSlider = () => {
-  const { addToCart, router } = useAppContext();
+  const { addToCart, router, products } = useAppContext();
+  
+  // Find the first headphone, gaming console, and laptop products to use their IDs
+  const getProductIdByType = (type) => {
+    const product = products.find(p => 
+      p.name.toLowerCase().includes(type.toLowerCase()) || 
+      p.category.toLowerCase().includes(type.toLowerCase())
+    );
+    return product ? product._id : null;
+  };
   
   const sliderData = [
     {
       id: 1,
-      productId: "1", 
       title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
       offer: "Limited Time Offer 30% Off",
       buttonText1: "Buy now",
       buttonText2: "Find more",
       imgSrc: assets.header_headphone_image,
+      type: "headphone"
     },
     {
       id: 2,
-      productId: "2",
       title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
       offer: "Hurry up only few lefts!",
       buttonText1: "Shop Now",
       buttonText2: "Explore Deals",
       imgSrc: assets.header_playstation_image,
+      type: "playstation"
     },
     {
       id: 3,
-      productId: "3",
       title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
       offer: "Exclusive Deal 40% Off",
       buttonText1: "Order Now",
       buttonText2: "Learn More",
       imgSrc: assets.header_macbook_image,
+      type: "macbook"
     },
   ];
 
@@ -49,13 +58,25 @@ const HeaderSlider = () => {
     setCurrentSlide(index);
   };
   
-  const handleBuyNow = (productId) => {
-    addToCart(productId);
-    router.push("/cart");
+  const handleBuyNow = (type) => {
+    const productId = getProductIdByType(type);
+    if (productId) {
+      addToCart(productId);
+      router.push("/cart");
+    } else {
+      // Fallback to all products if specific product not found
+      router.push("/all-products");
+    }
   };
   
-  const handleExploreMore = (productId) => {
-    router.push(`/product/${productId}`);
+  const handleExploreMore = (type) => {
+    const productId = getProductIdByType(type);
+    if (productId) {
+      router.push(`/product/${productId}`);
+    } else {
+      // Fallback to all products if specific product not found
+      router.push("/all-products");
+    }
   };
 
   return (
@@ -78,13 +99,13 @@ const HeaderSlider = () => {
               </h1>
               <div className="flex items-center mt-4 md:mt-6 ">
                 <button 
-                  onClick={() => handleBuyNow(slide.productId)} 
+                  onClick={() => handleBuyNow(slide.type)} 
                   className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium hover:bg-orange-700 transition"
                 >
                   {slide.buttonText1}
                 </button>
                 <button 
-                  onClick={() => handleExploreMore(slide.productId)} 
+                  onClick={() => handleExploreMore(slide.type)} 
                   className="group flex items-center gap-2 px-6 py-2.5 font-medium"
                 >
                   {slide.buttonText2}
