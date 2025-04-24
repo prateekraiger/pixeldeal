@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
-  const { isSeller, router, user } = useAppContext();
+  const { isSeller, router, user, getCartCount } = useAppContext();
   const { openSignIn } = useClerk();
 
   return (
@@ -45,6 +45,17 @@ const Navbar = () => {
 
       <ul className="hidden md:flex items-center gap-4">
         <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+        
+        {/* Cart Icon with Count */}
+        <div className="relative cursor-pointer" onClick={() => router.push("/cart")}>
+          <ShoppingCart className="h-5 w-5 text-gray-700 hover:text-gray-900 transition" />
+          {getCartCount() > 0 && (
+            <div className="absolute -top-2 -right-2 bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {getCartCount()}
+            </div>
+          )}
+        </div>
+        
         {user ? (
           <UserButton>
             <UserButton.MenuItems>
@@ -73,6 +84,16 @@ const Navbar = () => {
 
       {/* Mobile View */}
       <div className="flex items-center md:hidden gap-3">
+        {/* Mobile Cart Icon with Count */}
+        <div className="relative cursor-pointer" onClick={() => router.push("/cart")}>
+          <ShoppingCart className="h-5 w-5 text-gray-700 hover:text-gray-900 transition" />
+          {getCartCount() > 0 && (
+            <div className="absolute -top-2 -right-2 bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {getCartCount()}
+            </div>
+          )}
+        </div>
+        
         {isSeller && (
           <button
             onClick={() => router.push("/seller")}

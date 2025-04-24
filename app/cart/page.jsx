@@ -4,6 +4,7 @@ import { assets } from "@/assets/assets";
 import OrderSummary from "@/components/OrderSummary";
 import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
+import { Trash2 } from "lucide-react";
 
 const Cart = () => {
 
@@ -35,6 +36,9 @@ const Cart = () => {
                   <th className="pb-6 md:px-4 px-1 text-gray-600 font-medium">
                     Subtotal
                   </th>
+                  <th className="pb-6 md:px-4 px-1 text-gray-600 font-medium">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -46,31 +50,17 @@ const Cart = () => {
                   return (
                     <tr key={itemId}>
                       <td className="flex items-center gap-4 py-4 md:px-4 px-1">
-                        <div>
-                          <div className="rounded-lg overflow-hidden bg-gray-500/10 p-2">
-                            <Image
-                              src={product.image[0]}
-                              alt={product.name}
-                              className="w-16 h-auto object-cover mix-blend-multiply"
-                              width={1280}
-                              height={720}
-                            />
-                          </div>
-                          <button
-                            className="md:hidden text-xs text-orange-600 mt-1"
-                            onClick={() => updateCartQuantity(product._id, 0)}
-                          >
-                            Remove
-                          </button>
+                        <div className="rounded-lg overflow-hidden bg-gray-500/10 p-2">
+                          <Image
+                            src={product.image[0]}
+                            alt={product.name}
+                            className="w-16 h-auto object-cover mix-blend-multiply"
+                            width={1280}
+                            height={720}
+                          />
                         </div>
-                        <div className="text-sm hidden md:block">
+                        <div className="text-sm">
                           <p className="text-gray-800">{product.name}</p>
-                          <button
-                            className="text-xs text-orange-600 mt-1"
-                            onClick={() => updateCartQuantity(product._id, 0)}
-                          >
-                            Remove
-                          </button>
                         </div>
                       </td>
                       <td className="py-4 md:px-4 px-1 text-gray-600">{new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(product.offerPrice)}</td>
@@ -94,6 +84,15 @@ const Cart = () => {
                         </div>
                       </td>
                       <td className="py-4 md:px-4 px-1 text-gray-600">{new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(product.offerPrice * cartItems[itemId])}</td>
+                      <td className="py-4 md:px-4 px-1">
+                        <button
+                          className="text-red-500 hover:text-red-700 transition p-1"
+                          onClick={() => updateCartQuantity(product._id, 0)}
+                          title="Remove item"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+                      </td>
                     </tr>
                   );
                 })}
