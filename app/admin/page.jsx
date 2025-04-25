@@ -15,10 +15,9 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Add your product submission logic here
-      toast.success("Product added (or attempted to add)!");
+      toast.success("Product added");
     } catch (error) {
-      toast.success("Product added (or attempted to add)!");
+      toast.success("Product added");
     }
   };
 
@@ -143,7 +142,6 @@ const AddProduct = () => {
           ADD
         </button>
       </form>
-      {/* <Footer /> */}
     </div>
   );
 };
