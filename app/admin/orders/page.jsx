@@ -49,7 +49,9 @@ const Orders = () => {
                   <span>{order.address.phoneNumber}</span>
                 </p>
               </div>
-              <p className="font-medium my-auto">{currency}{order.amount}</p>
+              <p className="font-medium my-auto">
+                {new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(order.amount)}
+              </p>
               <div>
                 <p className="flex flex-col">
                   <span>Method : COD</span>
