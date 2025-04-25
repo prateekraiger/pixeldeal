@@ -98,6 +98,69 @@ export const assets = {
   checkmark
 };
 
+export const productAssets = [
+  {
+    id: 1,
+    name: "Apple Earphones",
+    price: "₹24,999",
+    imgSrc: apple_earphone_image,
+  },
+  {
+    id: 2,
+    name: "Bose QuietComfort 45",
+    price: "₹29,499",
+    imgSrc: bose_headphone_image,
+  },
+  {
+    id: 3,
+    name: "Samsung Galaxy S23",
+    price: "₹89,999",
+    imgSrc: samsung_s23phone_image,
+  },
+  {
+    id: 4,
+    name: "Garmin Venu 2",
+    price: "₹44,990",
+    imgSrc: venu_watch_image,
+  },
+  {
+    id: 5,
+    name: "PlayStation 5",
+    price: "₹54,990",
+    imgSrc: playstation_image,
+  },
+  {
+    id: 6,
+    name: "Canon EOS R5",
+    price: "₹3,39,999",
+    imgSrc: cannon_camera_image,
+  },
+  {
+    id: 7,
+    name: "MacBook Pro 16",
+    price: "₹2,89,900",
+    imgSrc: macbook_image,
+  },
+  {
+    id: 8,
+    name: "Sony WF-1000XM5",
+    price: "₹24,990",
+    imgSrc: sony_airbuds_image,
+  },
+  {
+    id: 9,
+    name: "Samsung Projector 4k",
+    price: "₹1,49,990",
+    imgSrc: projector_image,
+  },
+  {
+    id: 10,
+    name: "ASUS ROG Zephyrus G16",
+    price: "₹1,99,990",
+    imgSrc: asus_laptop_image,
+  },
+];
+
 export const BagIcon = () => {
   return (
     <svg className="w-5 h-5 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -167,8 +230,8 @@ export const productsDummyData = [
     "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
     "name": "Samsung Galaxy S23",
     "description": "The Samsung Galaxy S23 offers an all-encompassing mobile experience with its advanced AMOLED display, offering vibrant visuals and smooth interactions. Equipped with top-of-the-line fitness tracking features and cutting-edge technology, this phone delivers outstanding performance. With powerful hardware, a sleek design, and long battery life, the S23 is perfect for those who demand the best in mobile innovation.",
-    "price": 899.99,
-    "offerPrice": 799.99,
+    "price": 89999.99,
+    "offerPrice": 89999.99,
     "image": [
       "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/xjd4eprpwqs7odbera1w.webp"
     ],
@@ -181,8 +244,8 @@ export const productsDummyData = [
     "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
     "name": "Garmin Venu 2",
     "description": "The Garmin Venu 2 smartwatch blends advanced fitness tracking with sophisticated design, offering a wealth of features such as heart rate monitoring, GPS, and sleep tracking. Built with a 24-hour battery life, this watch is ideal for fitness enthusiasts and anyone looking to enhance their daily lifestyle. With a stunning AMOLED display and customizable watch faces, the Venu 2 combines technology with style seamlessly.",
-    "price": 399.99,
-    "offerPrice": 349.99,
+    "price": 3990,
+    "offerPrice": 3490,
     "image": [
       "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/hdfi4u3fmprazpnrnaga.webp"
     ],
