@@ -1,8 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe("pk_test_51RIAFTPbT13EgNjQbu5RoViaKKqpGA1qboAdtg3ZJNeQkY12wE1mSzgw2zC2jvpyq6bQopcSjwhtyDzNjIZqVZ7b00SnzDfZi9");
+
+const StripeCheckoutForm = ({ orderDetails, cartItems, onPaymentSuccess }) => {
+
+  return (
+    <div className="my-4">
+      <button
+        type="button"
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        onClick={() => {
+
+          onPaymentSuccess();
+        }}
+      >
+        Pay with Card (Stripe)
+      </button>
+      <p className="text-xs mt-2 text-gray-500">Stripe test mode. No real payment processed.</p>
+    </div>
+  );
+};
 
 const OrderPage = () => {
   const router = useRouter();
@@ -14,6 +37,11 @@ const OrderPage = () => {
     paymentMode: "COD",
   });
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [showStripe, setShowStripe] = useState(false);
+
+  useEffect(() => {
+    setShowStripe(orderDetails.paymentMode === "Card");
+  }, [orderDetails.paymentMode]);
 
   const handleOrderInput = (e) => {
     setOrderDetails({ ...orderDetails, [e.target.name]: e.target.value });
@@ -22,13 +50,19 @@ const OrderPage = () => {
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
     setIsPlacingOrder(true);
-    // Store order details and cart in sessionStorage
     window.sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
     window.sessionStorage.setItem("orderItems", JSON.stringify(cartItems));
     setTimeout(() => {
       setIsPlacingOrder(false);
       router.push("/order-placed");
     }, orderDetails.paymentMode === "COD" ? 800 : 2000);
+  };
+
+  const handleStripeSuccess = () => {
+    // Simulate storing and redirecting after Stripe payment
+    window.sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+    window.sessionStorage.setItem("orderItems", JSON.stringify(cartItems));
+    router.push("/order-placed");
   };
 
   return (
@@ -49,7 +83,7 @@ const OrderPage = () => {
             </thead>
             <tbody>
               {Object.keys(cartItems).map((itemId) => {
-                const product = products.find(product => product._id === itemId);
+                const product = products.find((product) => product._id === itemId);
                 if (!product || cartItems[itemId] <= 0) return null;
                 return (
                   <tr key={itemId} className="border-b">
@@ -88,9 +122,16 @@ const OrderPage = () => {
               <option value="Card">Credit/Debit Card</option>
             </select>
           </label>
-          <button type="submit" disabled={isPlacingOrder} className="w-full bg-orange-600 text-white py-2 mt-4 rounded hover:bg-orange-700">
-            {isPlacingOrder ? (orderDetails.paymentMode === "COD" ? "Placing Order..." : "Processing Payment...") : "Confirm & Pay"}
-          </button>
+          {/* Show Stripe when Card is selected */}
+          {showStripe ? (
+            <Elements stripe={stripePromise}>
+              <StripeCheckoutForm orderDetails={orderDetails} cartItems={cartItems} onPaymentSuccess={handleStripeSuccess} />
+            </Elements>
+          ) : (
+            <button type="submit" disabled={isPlacingOrder} className="w-full bg-orange-600 text-white py-2 mt-4 rounded hover:bg-orange-700">
+              {isPlacingOrder ? (orderDetails.paymentMode === "COD" ? "Placing Order..." : "Processing Payment...") : "Confirm & Pay"}
+            </button>
+          )}
         </form>
       </div>
     </div>
