@@ -38,6 +38,18 @@ const SideBar = () => {
                     </Link>
                 );
             })}
+            {/* Logout Button */}
+            <button
+                onClick={() => {
+                    if (typeof window !== "undefined") {
+                        localStorage.removeItem("adminLoggedIn");
+                        window.location.href = "/admin/login";
+                    }
+                }}
+                className="mt-8 mx-4 py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded-md text-sm"
+            >
+                Logout
+            </button>
         </div>
     );
 };
