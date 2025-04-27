@@ -336,6 +336,76 @@ export const productsDummyData = [
     "category": "Laptop",
     "date": 1738668619198,
     "__v": 0
+  },
+  {
+    "_id": "prod_1f7e8c10a01a4b2b9c1a1a01",
+    "userId": "user_3a2f7b1c8e6d4f0a9b2c1d3e",
+    "name": "Portronics Hydra 10",
+    "description": "It is Mechanical Wireless Gaming Keyboard with Bluetooth 5.0 + 2.4 GHz, RGB Lights 16.8 Million Colors, Type C Charging, Compatible with PCs, Smartphones and Tablets(Red)",
+    "price": 3000,
+    "offerPrice": 2799,
+    "image": [
+      "https://m.media-amazon.com/images/I/61+5DVCujOL._SX679_.jpg"
+    ],
+    "category": "keyboard",
+    "date": 1745732020000,
+    "__v": 0
+  },
+  {
+    "_id": "prod_2a9d7f3b4c6e5d1f8e7c2b01",
+    "userId": "user_4b5d6e7f8a9c1b2d3e4f5a6b",
+    "name": "EvoFox Phantom Air Mouse",
+    "description": "EvoFox Phantom Air Ultra Lightweight Gaming Mouse | Upto 1000Hz Polling Rate, 7000 FPS, 12800 DPI | Honeycomb RGB Lighting | Fully Programmable with Windows Software & On-Board Memory | White",
+    "price": 1000,
+    "offerPrice": 899,
+    "image": [
+      "https://m.media-amazon.com/images/I/31l7ZpeAMDL._SX300_SY300_QL70_FMwebp_.jpg"
+    ],
+    "category": "mouse",
+    "date": 1745732030000,
+    "__v": 0
+  },
+  {
+    "_id": "prod_3c8e7d2a1b4f6e9c7d8a2e01",
+    "userId": "user_5c6d7e8f9a0b1c2d3e4f5b6a",
+    "name": "Beats Studio Buds",
+    "description": "Beats Studio Buds - Wireless Bluetooth Noise Cancelling Earbuds - Up to 8H Battery Life, Up to 24H w Charging Case, IPX4 Rating, Sweat Resistant, Apple & Android Compatible, Built-in Mic - White",
+    "price": 16999,
+    "offerPrice": 14999,
+    "image": [
+      "https://m.media-amazon.com/images/I/41NxYgnqssL._SX679_.jpg"
+    ],
+    "category": "earbuds",
+    "date": 1745732040000,
+    "__v": 0
+  },
+  {
+    "_id": "prod_4d7c6b5a3e2f1d8c9b0a1e01",
+    "userId": "user_6d7e8f9a0b1c2d3e4f5b6c7d",
+    "name": "HP Omen 16",
+    "description": "HP Omen, AMD Ryzen 7 7840Hs/16.1\"(40.9cm) AI Gaming Laptop 7Ms Response Time(8gb RTX 4060/16GB DDR5/SSD,1TB) FHD,IPS,165Hz,300Nits(win11,Black,2.32kg),Xd0020Ax",
+    "price": 108990,
+    "offerPrice": 99999,
+    "image": [
+      "https://m.media-amazon.com/images/I/71S1eXJmIAL._SX679_.jpg"
+    ],
+    "category": "laptop",
+    "date": 1745732050000,
+    "__v": 0
+  },
+  {
+    "_id": "prod_5e6d4c3b2a1f8e7c9d0b1a01",
+    "userId": "user_7e8f9a0b1c2d3e4f5b6c7d8e",
+    "name": "MSI MAG 275QF Monitor",
+    "description": "MSI MAG 275QF 27-inch 2K Gaming Monitor, 2560 x 1440 (UHD), 0.5ms Response Time, 180Hz, HDR Ready, HDMI, DP Port, Tilt Adjustable",
+    "price": 28140,
+    "offerPrice": 24999,
+    "image": [
+      "https://m.media-amazon.com/images/I/71owVqpF3-L._SX522_.jpg"
+    ],
+    "category": "monitors",
+    "date": 1745732060000,
+    "__v": 0
   }
 ]
 
