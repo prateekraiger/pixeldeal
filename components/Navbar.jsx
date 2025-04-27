@@ -5,10 +5,19 @@ import { useClerk, UserButton } from "@clerk/nextjs";
 import { ShoppingBag, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const Navbar = () => {
   const { isSeller, router, user, getCartCount } = useAppContext();
   const { openSignIn } = useClerk();
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      router.push(`/all-products?search=${encodeURIComponent(search.trim())}`);
+    }
+  };
 
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-gray-700">
@@ -40,8 +49,18 @@ const Navbar = () => {
         </button>
       </div>
       <ul className="hidden md:flex items-center gap-4">
-        <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
-        
+        <form onSubmit={handleSearch} className="flex items-center bg-white rounded-full px-2 py-1 shadow-md border border-gray-200">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="outline-none bg-transparent px-2 py-1 text-sm w-36 focus:w-56 transition-all duration-200"
+          />
+          <button type="submit" className="p-1 text-sky-700 hover:text-sky-900">
+            <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+          </button>
+        </form>
         {/* Cart Icon with Count */}
         <div className="relative cursor-pointer" onClick={() => router.push("/cart")}>
           <ShoppingCart className="h-5 w-5 text-gray-700 hover:text-gray-900 transition" />
@@ -51,7 +70,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        
         {user ? (
           <UserButton>
             <UserButton.MenuItems>
@@ -89,7 +107,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        
         <button
           onClick={() => router.push("/admin")}
           className="text-xs border px-4 py-1.5 rounded-full"
