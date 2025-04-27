@@ -47,9 +47,77 @@
       margin: 0;
     }
     
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         html {
             font-size: 15px;
+        }
+        .lg\:px-32 {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+        .lg\:text-2xl {
+            font-size: 1.5rem !important;
+        }
+        .lg\:gap-14 {
+            gap: 2rem !important;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        html {
+            font-size: 14px;
+        }
+        .md\:px-16 {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+        .md\:text-3xl {
+            font-size: 1.25rem !important;
+        }
+        .md\:flex-row {
+            flex-direction: column !important;
+        }
+        .md\:w-40 {
+            width: 7rem !important;
+        }
+        .md\:w-72 {
+            width: 10rem !important;
+        }
+        .md\:gap-8 {
+            gap: 1.25rem !important;
+        }
+        .md\:py-14 {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+        .md\:block {
+            display: none !important;
+        }
+        .md\:hidden {
+            display: block !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        html {
+            font-size: 13px;
+        }
+        .px-6, .md\:px-16, .lg\:px-32 {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+        .py-3, .py-14 {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+        .text-2xl, .md\:text-3xl, .lg\:text-2xl {
+            font-size: 1.1rem !important;
+        }
+        .w-36, .md\:w-40 {
+            width: 6rem !important;
+        }
+        .max-w-56, .max-w-80 {
+            max-width: 10rem !important;
         }
     }
 }
