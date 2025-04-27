@@ -18,6 +18,13 @@
     
     body {
         font-size: 1.05rem; /* Slightly larger than base for better readability */
+        /* Clean sky blue gradient background for a fresh look */
+        background: linear-gradient(180deg, #e0f7fa 0%, #87ceeb 60%, #00bfff 100%);
+        background-attachment: fixed;
+        position: relative;
+    }
+    body::before {
+        content: none !important;
     }
     
     p {
