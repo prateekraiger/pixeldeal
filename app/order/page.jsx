@@ -38,17 +38,34 @@ const OrderPage = () => {
   });
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [showStripe, setShowStripe] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
     setShowStripe(orderDetails.paymentMode === "Card");
   }, [orderDetails.paymentMode]);
 
+  const validateForm = () => {
+    const errors = {};
+    if (!orderDetails.name.trim()) errors.name = "Name is required.";
+    if (!orderDetails.address.trim()) errors.address = "Address is required.";
+    if (!orderDetails.phone.trim()) {
+      errors.phone = "Phone number is required.";
+    } else if (!/^\d{10}$/.test(orderDetails.phone.trim())) {
+      errors.phone = "Enter a valid 10-digit phone number.";
+    }
+    return errors;
+  };
+
   const handleOrderInput = (e) => {
     setOrderDetails({ ...orderDetails, [e.target.name]: e.target.value });
+    setFormErrors({ ...formErrors, [e.target.name]: undefined });
   };
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
+    const errors = validateForm();
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) return;
     setIsPlacingOrder(true);
     window.sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
     window.sessionStorage.setItem("orderItems", JSON.stringify(cartItems));
@@ -63,6 +80,12 @@ const OrderPage = () => {
     window.sessionStorage.setItem("orderDetails", JSON.stringify(orderDetails));
     window.sessionStorage.setItem("orderItems", JSON.stringify(cartItems));
     router.push("/order-placed");
+  };
+
+  // Utility: Check if all delivery info is valid and filled
+  const isDeliveryInfoValid = () => {
+    const errors = validateForm();
+    return Object.keys(errors).length === 0;
   };
 
   return (
@@ -107,13 +130,16 @@ const OrderPage = () => {
         <form onSubmit={handleOrderSubmit} className="mt-6">
           <h2 className="text-lg font-semibold mb-4">Shipping & Payment Details</h2>
           <label className="block mb-3 font-medium">Name
-            <input required name="name" value={orderDetails.name} onChange={handleOrderInput} className="w-full border p-2 mt-1 rounded" />
+            <input required name="name" value={orderDetails.name} onChange={handleOrderInput} className={`w-full border p-2 mt-1 rounded ${formErrors.name ? 'border-red-500' : ''}`} />
+            {formErrors.name && <span className="text-red-500 text-sm">{formErrors.name}</span>}
           </label>
           <label className="block mb-3 font-medium">Address
-            <textarea required name="address" value={orderDetails.address} onChange={handleOrderInput} className="w-full border p-2 mt-1 rounded" />
+            <textarea required name="address" value={orderDetails.address} onChange={handleOrderInput} className={`w-full border p-2 mt-1 rounded ${formErrors.address ? 'border-red-500' : ''}`} />
+            {formErrors.address && <span className="text-red-500 text-sm">{formErrors.address}</span>}
           </label>
           <label className="block mb-3 font-medium">Phone Number
-            <input required name="phone" value={orderDetails.phone} onChange={handleOrderInput} className="w-full border p-2 mt-1 rounded" />
+            <input required name="phone" value={orderDetails.phone} onChange={handleOrderInput} className={`w-full border p-2 mt-1 rounded ${formErrors.phone ? 'border-red-500' : ''}`} />
+            {formErrors.phone && <span className="text-red-500 text-sm">{formErrors.phone}</span>}
           </label>
           <label className="block mb-3 font-medium">Mode of Payment
             <select name="paymentMode" value={orderDetails.paymentMode} onChange={handleOrderInput} className="w-full border p-2 mt-1 rounded">
@@ -128,7 +154,11 @@ const OrderPage = () => {
               <StripeCheckoutForm orderDetails={orderDetails} cartItems={cartItems} onPaymentSuccess={handleStripeSuccess} />
             </Elements>
           ) : (
-            <button type="submit" disabled={isPlacingOrder} className="w-full bg-orange-600 text-white py-2 mt-4 rounded hover:bg-orange-700">
+            <button
+              type="submit"
+              disabled={!isDeliveryInfoValid() || isPlacingOrder}
+              className={`w-full bg-orange-600 text-white py-2 mt-4 rounded hover:bg-orange-700 ${(!isDeliveryInfoValid() || isPlacingOrder) ? 'opacity-60 cursor-not-allowed' : ''}`}
+            >
               {isPlacingOrder ? (orderDetails.paymentMode === "COD" ? "Placing Order..." : "Processing Payment...") : "Confirm & Pay"}
             </button>
           )}

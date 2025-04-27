@@ -14,6 +14,43 @@ const Placeorder = () => {
   const router = useRouter();
   const { products, cartItems, getCartAmount, getCartCount } = useAppContext();
 
+  // Delivery information state
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    city: '',
+    state: '',
+    pincode: '',
+    country: '',
+    phone: '',
+  });
+  const [formErrors, setFormErrors] = useState({});
+
+  // Validate delivery information
+  const validateDeliveryInfo = () => {
+    const errors = {};
+    if (!deliveryInfo.firstName.trim()) errors.firstName = 'First Name is required.';
+    if (!deliveryInfo.lastName.trim()) errors.lastName = 'Last Name is required.';
+    if (!deliveryInfo.email.trim()) errors.email = 'Email is required.';
+    else if (!/^\S+@\S+\.\S+$/.test(deliveryInfo.email.trim())) errors.email = 'Enter a valid email.';
+    if (!deliveryInfo.street.trim()) errors.street = 'Street is required.';
+    if (!deliveryInfo.city.trim()) errors.city = 'City is required.';
+    if (!deliveryInfo.state.trim()) errors.state = 'State is required.';
+    if (!deliveryInfo.pincode.trim()) errors.pincode = 'PinCode is required.';
+    else if (!/^\d{6}$/.test(deliveryInfo.pincode.trim())) errors.pincode = 'Enter a valid 6-digit PinCode.';
+    if (!deliveryInfo.country.trim()) errors.country = 'Country is required.';
+    if (!deliveryInfo.phone.trim()) errors.phone = 'Phone is required.';
+    else if (!/^\d{10}$/.test(deliveryInfo.phone.trim())) errors.phone = 'Enter a valid 10-digit phone number.';
+    return errors;
+  };
+
+  const handleDeliveryInput = (e) => {
+    setDeliveryInfo({ ...deliveryInfo, [e.target.name]: e.target.value });
+    setFormErrors({ ...formErrors, [e.target.name]: undefined });
+  };
+
   // Convert cartItems to array of products for backend
   const cartData = [];
   for (const itemId in cartItems) {
@@ -33,7 +70,21 @@ const Placeorder = () => {
   // Calculate total price
   const totalPrice = cartData.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const isDeliveryInfoValid = () => {
+    const errors = validateDeliveryInfo();
+    return Object.keys(errors).length === 0;
+  };
+
   const handlePlaceOrder = async () => {
+    const errors = validateDeliveryInfo();
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      // Scroll to the first error field for better UX
+      const firstErrorField = Object.keys(errors)[0];
+      const el = document.getElementsByName(firstErrorField)[0];
+      if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     if (cartData.length === 0) {
       alert("Cart is empty");
       return;
@@ -45,7 +96,7 @@ const Placeorder = () => {
         const response = await fetch("/api/create-checkout-session", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ products: cartData, totalPrice }),
+          body: JSON.stringify({ products: cartData, totalPrice, deliveryInfo }),
         });
         const data = await response.json();
         if (data.sessionId) {
@@ -59,7 +110,7 @@ const Placeorder = () => {
         return;
       }
       // COD fallback
-      window.sessionStorage.setItem("orderDetails", JSON.stringify({ method, totalPrice }));
+      window.sessionStorage.setItem("orderDetails", JSON.stringify({ method, totalPrice, deliveryInfo }));
       window.sessionStorage.setItem("orderItems", JSON.stringify(cartData));
       router.push("/order-placed");
     } catch (err) {
@@ -76,20 +127,29 @@ const Placeorder = () => {
       <div className="flex flex-col gap-4 w-full sm:w-1/2">
         <div className="text-xl sm:text-2xl my-3 font-bold text-orange-600">DELIVERY INFORMATION</div>
         <div className="flex gap-3">
-          <input type="text" placeholder="First Name" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
-          <input type="text" placeholder="Last Name" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
+          <input type="text" name="firstName" placeholder="First Name" value={deliveryInfo.firstName} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.firstName ? 'border-red-500' : ''}`} />
+          <input type="text" name="lastName" placeholder="Last Name" value={deliveryInfo.lastName} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.lastName ? 'border-red-500' : ''}`} />
         </div>
-        <input type="email" placeholder="Enter your email" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
-        <input type="text" placeholder="Street" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        {formErrors.firstName && <span className="text-red-500 text-sm">{formErrors.firstName}</span>}
+        {formErrors.lastName && <span className="text-red-500 text-sm">{formErrors.lastName}</span>}
+        <input type="email" name="email" placeholder="Enter your email" value={deliveryInfo.email} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.email ? 'border-red-500' : ''}`} />
+        {formErrors.email && <span className="text-red-500 text-sm">{formErrors.email}</span>}
+        <input type="text" name="street" placeholder="Street" value={deliveryInfo.street} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.street ? 'border-red-500' : ''}`} />
+        {formErrors.street && <span className="text-red-500 text-sm">{formErrors.street}</span>}
         <div className="flex gap-3">
-          <input type="text" placeholder="City" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
-          <input type="text" placeholder="State" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
+          <input type="text" name="city" placeholder="City" value={deliveryInfo.city} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.city ? 'border-red-500' : ''}`} />
+          <input type="text" name="state" placeholder="State" value={deliveryInfo.state} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.state ? 'border-red-500' : ''}`} />
         </div>
+        {formErrors.city && <span className="text-red-500 text-sm">{formErrors.city}</span>}
+        {formErrors.state && <span className="text-red-500 text-sm">{formErrors.state}</span>}
         <div className="flex gap-3">
-          <input type="number" placeholder="PinCode" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
-          <input type="text" placeholder="Country" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
+          <input type="number" name="pincode" placeholder="PinCode" value={deliveryInfo.pincode} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.pincode ? 'border-red-500' : ''}`} />
+          <input type="text" name="country" placeholder="Country" value={deliveryInfo.country} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.country ? 'border-red-500' : ''}`} />
         </div>
-        <input type="tel" placeholder="Phone" className="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        {formErrors.pincode && <span className="text-red-500 text-sm">{formErrors.pincode}</span>}
+        {formErrors.country && <span className="text-red-500 text-sm">{formErrors.country}</span>}
+        <input type="tel" name="phone" placeholder="Phone" value={deliveryInfo.phone} onChange={handleDeliveryInput} className={`border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 ${formErrors.phone ? 'border-red-500' : ''}`} />
+        {formErrors.phone && <span className="text-red-500 text-sm">{formErrors.phone}</span>}
       </div>
 
       {/* right side - cart total and payment */}
@@ -153,7 +213,7 @@ const Placeorder = () => {
 
           <button
             onClick={handlePlaceOrder}
-            className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center"
+            className={`w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center`}
             disabled={loading}
           >
             {loading ? (
@@ -165,6 +225,11 @@ const Placeorder = () => {
               "Place Order"
             )}
           </button>
+          {Object.keys(formErrors).length > 0 && (
+            <div className="mt-2 text-red-600 text-sm font-semibold">
+              Please fill all required delivery information correctly: {Object.values(formErrors).join(', ')}
+            </div>
+          )}
         </div>
       </div>
     </div>
