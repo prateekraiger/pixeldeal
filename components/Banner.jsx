@@ -6,15 +6,14 @@ import { useAppContext } from "@/context/AppContext";
 const Banner = () => {
   const { addToCart, router, products } = useAppContext();
   
-  // Find a product related to gaming or audio to use for the banner
+
   const getProductId = () => {
     const product = products.find(p => 
       p.name.toLowerCase().includes('jbl') || 
       p.name.toLowerCase().includes('sound') ||
       p.category.toLowerCase().includes('speaker')
     );
-    
-    // Fallback to any product if no matching product found
+
     return product ? product._id : (products.length > 0 ? products[0]._id : null);
   };
   
@@ -24,7 +23,7 @@ const Banner = () => {
       addToCart(productId);
       router.push("/cart");
     } else {
-      // Fallback to all products if no products available
+
       router.push("/all-products");
     }
   };
