@@ -23,7 +23,7 @@ const AddProduct = () => {
 
   return (
     <div className="flex-1 min-h-screen flex flex-col justify-between">
-      <form onSubmit={handleSubmit} className="md:p-10 p-4 space-y-5 max-w-lg">
+      <form onSubmit={handleSubmit} className="md:p-10 p-4 space-y-5 max-w-lg w-full mx-auto bg-white rounded shadow-sm">
         <div>
           <p className="text-base font-medium">Product Image</p>
           <div className="flex flex-wrap items-center gap-3 mt-2">
@@ -55,7 +55,7 @@ const AddProduct = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-1 max-w-md">
+        <div className="flex flex-col gap-1 w-full">
           <label className="text-base font-medium" htmlFor="product-name">
             Product Name
           </label>
@@ -63,13 +63,13 @@ const AddProduct = () => {
             id="product-name"
             type="text"
             placeholder="Type here"
-            className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+            className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 w-full"
             onChange={(e) => setName(e.target.value)}
             value={name}
             required
           />
         </div>
-        <div className="flex flex-col gap-1 max-w-md">
+        <div className="flex flex-col gap-1 w-full">
           <label
             className="text-base font-medium"
             htmlFor="product-description"
@@ -79,21 +79,21 @@ const AddProduct = () => {
           <textarea
             id="product-description"
             rows={4}
-            className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 resize-none"
+            className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 resize-none w-full"
             placeholder="Type here"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             required
           ></textarea>
         </div>
-        <div className="flex items-center gap-5 flex-wrap">
-          <div className="flex flex-col gap-1 w-32">
+        <div className="flex flex-col md:flex-row items-center gap-5 flex-wrap w-full">
+          <div className="flex flex-col gap-1 w-full md:w-1/3">
             <label className="text-base font-medium" htmlFor="category">
               Category
             </label>
             <select
               id="category"
-              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 w-full"
               onChange={(e) => setCategory(e.target.value)}
               defaultValue={category}
             >
@@ -106,7 +106,7 @@ const AddProduct = () => {
               <option value="Accessories">Accessories</option>
             </select>
           </div>
-          <div className="flex flex-col gap-1 w-32">
+          <div className="flex flex-col gap-1 w-full md:w-1/3">
             <label className="text-base font-medium" htmlFor="product-price">
               Product Price
             </label>
@@ -114,13 +114,13 @@ const AddProduct = () => {
               id="product-price"
               type="number"
               placeholder="0"
-              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 w-full"
               onChange={(e) => setPrice(e.target.value)}
               value={price}
               required
             />
           </div>
-          <div className="flex flex-col gap-1 w-32">
+          <div className="flex flex-col gap-1 w-full md:w-1/3">
             <label className="text-base font-medium" htmlFor="offer-price">
               Offer Price
             </label>
@@ -128,7 +128,7 @@ const AddProduct = () => {
               id="offer-price"
               type="number"
               placeholder="0"
-              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 w-full"
               onChange={(e) => setOfferPrice(e.target.value)}
               value={offerPrice}
               required
@@ -137,7 +137,7 @@ const AddProduct = () => {
         </div>
         <button
           type="submit"
-          className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded"
+          className="w-full md:w-auto px-8 py-2.5 bg-orange-600 text-white font-medium rounded"
         >
           ADD
         </button>
