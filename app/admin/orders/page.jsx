@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { assets, orderDummyData } from "@/assets/assets";
 import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
+import { assets } from "@/assets/assets";
 
 const Orders = () => {
   const { currency } = useAppContext();
@@ -10,7 +10,60 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchSellerOrders = async () => {
-    setOrders(orderDummyData);
+    setOrders([
+      {
+        _id: "order1",
+        items: [
+          {
+            product: {
+              name: "Apple AirPods Pro",
+              offerPrice: 19999,
+              image: [assets.box_icon],
+            },
+            quantity: 1,
+          },
+          {
+            product: {
+              name: "Sony WF-1000XM5",
+              offerPrice: 24990,
+              image: [assets.box_icon],
+            },
+            quantity: 2,
+          },
+        ],
+        amount: 19999 + 2 * 24990,
+        address: {
+          fullName: "Rahul Sharma",
+          area: "Sector 21, Noida",
+          city: "Noida",
+          state: "UP",
+          phoneNumber: "+91 9876543210",
+        },
+        date: Date.now(),
+      },
+      {
+        _id: "order2",
+        items: [
+          {
+            product: {
+              name: "MacBook Pro 16",
+              offerPrice: 289900,
+              image: [assets.box_icon],
+            },
+            quantity: 1,
+          },
+        ],
+        amount: 289900,
+        address: {
+          fullName: "Aditi Verma",
+          area: "MG Road, Bengaluru",
+          city: "Bengaluru",
+          state: "KA",
+          phoneNumber: "+91 9123456780",
+        },
+        date: Date.now() - 86400000,
+      },
+    ]);
     setLoading(false);
   };
 
@@ -28,8 +81,10 @@ const Orders = () => {
               <div className="flex-1 flex gap-5 max-w-80">
                 <Image
                   className="max-w-16 max-h-16 object-cover w-full h-auto"
-                  src={assets.box_icon}
-                  alt="box_icon"
+                  src={order.items[0].product.image[0]}
+                  alt={order.items[0].product.name}
+                  width={64}
+                  height={64}
                 />
                 <p className="flex flex-col gap-3">
                   <span className="font-medium">
