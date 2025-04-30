@@ -19,6 +19,7 @@ const ProductCard = ({ product }) => {
                     className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full"
                     width={800}
                     height={800}
+                    unoptimized={product.image[0]?.startsWith('https://raw.githubusercontent.com/')}
                 />
                 <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md">
                     <Image

@@ -79,6 +79,10 @@ const HeaderSlider = () => {
     }
   };
 
+  if (!Array.isArray(sliderData) || sliderData.length === 0) {
+    return null;
+  }
+
   return (
     <div className="overflow-hidden relative w-full">
       <div
@@ -118,6 +122,9 @@ const HeaderSlider = () => {
                 className="md:w-72 w-48"
                 src={slide.imgSrc}
                 alt={`Slide ${index + 1}`}
+                width={288}
+                height={192}
+                style={{ width: '100%', height: 'auto' }}
               />
             </div>
           </div>

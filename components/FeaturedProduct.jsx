@@ -37,6 +37,9 @@ const FeaturedProduct = () => {
             <Image
               src={image}
               alt={title}
+              width={200}
+              height={200}
+              unoptimized={typeof image === 'string' && image.startsWith('https://raw.githubusercontent.com/')}
               className="group-hover:brightness-75 transition duration-300 w-full h-auto object-cover"
             />
             <div className="group-hover:-translate-y-4 transition duration-300 absolute bottom-8 left-8 text-white space-y-2">
