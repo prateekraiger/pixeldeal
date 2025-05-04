@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import HomeProducts from "@/components/HomeProducts";
 import Banner from "@/components/Banner";
 import NewsLetter from "@/components/NewsLetter";
@@ -31,7 +31,11 @@ const fadeLeft = {
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.92 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "backOut" } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, ease: "backOut" },
+  },
 };
 
 const Home = () => {
@@ -50,25 +54,21 @@ const Home = () => {
         viewport={{ once: true, amount: 0.7 }}
         className="mb-8"
       >
-        <motion.h1 variants={fadeLeft} className="text-3xl md:text-5xl font-bold mb-3 text-center">
-          Discover the Latest Tech
-        </motion.h1>
-        <motion.p variants={fadeUp} className="text-gray-600 text-lg md:text-xl mb-4 text-center">
-          Shop trending gadgets and electronics
-        </motion.p>
         <HeaderSlider />
       </motion.section>
 
       {/* Products */}
       <motion.section
         variants={fadeUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
         className="mb-12"
       >
-        <motion.h2 variants={fadeLeft} className="text-2xl md:text-3xl font-semibold mb-6 text-center">
-          Featured Products
+        <motion.h2
+          variants={fadeLeft}
+          className="text-2xl md:text-3xl font-semibold mb-6 text-center"
+        >
+          Popular Products
         </motion.h2>
         <HomeProducts />
       </motion.section>
@@ -114,7 +114,10 @@ const Home = () => {
         viewport={{ once: true, amount: 0.5 }}
         className="mb-16"
       >
-        <motion.h2 variants={fadeLeft} className="text-2xl md:text-3xl font-semibold mb-4 text-center">
+        <motion.h2
+          variants={fadeLeft}
+          className="text-2xl md:text-3xl font-semibold mb-4 text-center"
+        >
           Join Our Newsletter
         </motion.h2>
         <NewsLetter />
