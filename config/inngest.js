@@ -1,7 +1,7 @@
 import { Inngest } from 'inngest';
 
 // Initialize the Inngest client
-export const inngest = new Inngest({ name: 'NextGadget' });
+export const inngest = new Inngest({ id: 'nextgadget-app', name: 'NextGadget' });
 
 // Define your Inngest functions
 export const syncUserCreation = inngest.createFunction(
