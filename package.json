@@ -1,5 +1,5 @@
 {
-  "name": "NextGadget",
+  "name": "nextgadget",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,6 @@
     "@stripe/stripe-js": "^7.2.0",
     "axios": "^1.8.4",
     "framer-motion": "^12.9.4",
-    "inngest": "^3.35.1",
     "lucide-react": "^0.503.0",
     "mongoose": "^8.13.1",
     "next": "^15.2.4",
