@@ -1,0 +1,4 @@
+[[workers]]
+name = "worker-name"
+compatibility_date = "2025-05-09"
+assets = { directory = "./dist" }
