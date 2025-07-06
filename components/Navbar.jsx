@@ -73,17 +73,47 @@ const Navbar = () => {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <motion.div className="hidden md:flex items-center gap-4 lg:gap-8" variants={fadeIn}>
-          <Link href="/" className="hover:text-gray-900 transition text-base">Home</Link>
-          <Link href="/all-products" className="hover:text-gray-900 transition text-base">Shop</Link>
-          <Link href="/about" className="hover:text-gray-900 transition text-base">About Us</Link>
-          <Link href="/contact" className="hover:text-gray-900 transition text-base">Contact</Link>
-          <motion.button whileHover={{ scale: 1.07 }} whileTap={{ scale: 0.96 }} onClick={() => router.push("/admin/login")} className="text-sm border px-4 py-1.5 rounded-full ml-1">Admin Panel</motion.button>
+        <motion.div
+          className="hidden md:flex items-center gap-4 lg:gap-8"
+          variants={fadeIn}
+        >
+          <Link href="/" className="hover:text-gray-900 transition text-base">
+            Home
+          </Link>
+          <Link
+            href="/all-products"
+            className="hover:text-gray-900 transition text-base"
+          >
+            Shop
+          </Link>
+          <Link
+            href="/about"
+            className="hover:text-gray-900 transition text-base"
+          >
+            About Us
+          </Link>
+          <Link
+            href="/contact"
+            className="hover:text-gray-900 transition text-base"
+          >
+            Contact
+          </Link>
+          <motion.button
+            whileHover={{ scale: 1.07 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => router.push("/admin/login")}
+            className="text-sm border px-4 py-1.5 rounded-full ml-1"
+          >
+            Admin Panel
+          </motion.button>
         </motion.div>
 
         {/* Desktop Search and User Controls */}
         <ul className="hidden md:flex items-center gap-4">
-          <form onSubmit={handleSearch} className="flex items-center bg-white rounded-full px-2 py-1 shadow-md border border-gray-200">
+          <form
+            onSubmit={handleSearch}
+            className="flex items-center rounded-full px-2 py-1 shadow-md border border-gray-200"
+          >
             <input
               type="text"
               placeholder="Search products..."
@@ -91,26 +121,53 @@ const Navbar = () => {
               onChange={(e) => setSearch(e.target.value)}
               className="outline-none bg-transparent px-2 py-1 text-sm w-36 focus:w-56 transition-all duration-200"
             />
-            <button type="submit" className="p-1 text-sky-700 hover:text-sky-900">
-              <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+            <button
+              type="submit"
+              className="p-1 text-sky-700 hover:text-sky-900"
+            >
+              <Image
+                className="w-4 h-4"
+                src={assets.search_icon}
+                alt="search icon"
+              />
             </button>
           </form>
           {/* Cart Icon with Count */}
-          <motion.div whileHover={{ scale: 1.13 }} whileTap={{ scale: 0.95 }} className="relative cursor-pointer" onClick={() => router.push("/cart")}> 
+          <motion.div
+            whileHover={{ scale: 1.13 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative cursor-pointer"
+            onClick={() => router.push("/cart")}
+          >
             <ShoppingCart className="h-5 w-5 text-gray-700 hover:text-gray-900 transition" />
             {getCartCount() > 0 && (
-              <div className="absolute -top-2 -right-2 bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{getCartCount()}</div>
+              <div className="absolute -top-2 -right-2 bg-orange-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {getCartCount()}
+              </div>
             )}
           </motion.div>
           {user ? (
             <UserButton>
               <UserButton.MenuItems>
-                <UserButton.Action label="Cart" labelIcon={<ShoppingCart />} onClick={() => router.push("/cart")}/>
-                <UserButton.Action label="My Orders" labelIcon={<ShoppingBag />} onClick={() => router.push("/my-orders")}/>
+                <UserButton.Action
+                  label="Cart"
+                  labelIcon={<ShoppingCart />}
+                  onClick={() => router.push("/cart")}
+                />
+                <UserButton.Action
+                  label="My Orders"
+                  labelIcon={<ShoppingBag />}
+                  onClick={() => router.push("/my-orders")}
+                />
               </UserButton.MenuItems>
             </UserButton>
           ) : (
-            <motion.button whileHover={{ scale: 1.07 }} whileTap={{ scale: 0.96 }} onClick={openSignIn} className="flex items-center gap-2 hover:text-gray-900 transition">
+            <motion.button
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={openSignIn}
+              className="flex items-center gap-2 hover:text-gray-900 transition"
+            >
               <Image src={assets.user_icon} alt="user icon" />
               Account
             </motion.button>
@@ -125,14 +182,21 @@ const Navbar = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </motion.button>
       </motion.nav>
 
       {/* Mobile Search Overlay - slides down when activated */}
       {searchOpen && (
-        <div className="md:hidden w-full bg-white shadow-md py-3 px-4 animate-slideDown">
-          <form onSubmit={handleSearch} className="flex items-center bg-white rounded-full px-3 py-2 border border-gray-300">
+        <div className="md:hidden w-full shadow-md py-3 px-4 animate-slideDown">
+          <form
+            onSubmit={handleSearch}
+            className="flex items-center rounded-full px-3 py-2 border border-gray-300"
+          >
             <input
               type="text"
               placeholder="Search products..."
@@ -141,8 +205,15 @@ const Navbar = () => {
               className="outline-none bg-transparent flex-1 text-sm"
               autoFocus
             />
-            <button type="submit" className="p-1 text-sky-700 hover:text-sky-900">
-              <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+            <button
+              type="submit"
+              className="p-1 text-sky-700 hover:text-sky-900"
+            >
+              <Image
+                className="w-4 h-4"
+                src={assets.search_icon}
+                alt="search icon"
+              />
             </button>
           </form>
         </div>
@@ -150,31 +221,31 @@ const Navbar = () => {
 
       {/* Mobile Menu - slides down when activated */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-md w-full absolute z-50 animate-slideDown">
+        <div className="md:hidden shadow-md w-full absolute z-50 animate-slideDown">
           <div className="flex flex-col py-3">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="px-6 py-3 border-b border-gray-100 hover:bg-gray-50 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </Link>
-            <Link 
-              href="/all-products" 
+            <Link
+              href="/all-products"
               className="px-6 py-3 border-b border-gray-100 hover:bg-gray-50 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               Shop
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               className="px-6 py-3 border-b border-gray-100 hover:bg-gray-50 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
               About Us
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="px-6 py-3 border-b border-gray-100 hover:bg-gray-50 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -194,7 +265,11 @@ const Navbar = () => {
                 }}
                 className="px-6 py-3 text-left flex items-center gap-2 hover:bg-gray-50 transition"
               >
-                <Image src={assets.user_icon} alt="user icon" className="w-4 h-4" />
+                <Image
+                  src={assets.user_icon}
+                  alt="user icon"
+                  className="w-4 h-4"
+                />
                 Sign In
               </button>
             )}

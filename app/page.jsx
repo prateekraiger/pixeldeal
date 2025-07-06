@@ -40,89 +40,94 @@ const scaleIn = {
 
 const Home = () => {
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      className="px-6 md:px-16 lg:px-32"
-    >
-      {/* Hero / Slider */}
-      <motion.section
-        variants={scaleIn}
+    <div className="relative min-h-screen">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"></div>
+      </div>
+      <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.7 }}
-        className="mb-8"
+        animate="visible"
+        variants={containerVariants}
+        className="px-6 md:px-16 lg:px-32 relative z-10"
       >
-        <HeaderSlider />
-      </motion.section>
-
-      {/* Products */}
-      <motion.section
-        variants={fadeUp}
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="mb-12"
-      >
-        <motion.h2
-          variants={fadeLeft}
-          className="text-2xl md:text-3xl font-semibold mb-6 text-center"
+        {/* Hero / Slider */}
+        <motion.section
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.7 }}
+          className="mb-8"
         >
-          Popular Products
-        </motion.h2>
-        <HomeProducts />
-      </motion.section>
+          <HeaderSlider />
+        </motion.section>
 
-      {/* Featured Product */}
-      <motion.section
-        variants={scaleIn}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="mb-12"
-      >
-        <FeaturedProduct />
-      </motion.section>
-
-      {/* Banner */}
-      <motion.section
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="mb-12"
-      >
-        <Banner />
-      </motion.section>
-
-      {/* Contact Us */}
-      <motion.section
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="mb-12"
-      >
-        <ContactUs />
-      </motion.section>
-
-      {/* Newsletter */}
-      <motion.section
-        variants={scaleIn}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="mb-16"
-      >
-        <motion.h2
-          variants={fadeLeft}
-          className="text-2xl md:text-3xl font-semibold mb-4 text-center"
+        {/* Products */}
+        <motion.section
+          variants={fadeUp}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="mb-12"
         >
-          Join Our Newsletter
-        </motion.h2>
-        <NewsLetter />
-      </motion.section>
-    </motion.div>
+          <motion.h2
+            variants={fadeLeft}
+            className="text-2xl md:text-3xl font-semibold mb-6 text-center"
+          >
+            Popular Products
+          </motion.h2>
+          <HomeProducts />
+        </motion.section>
+
+        {/* Featured Product */}
+        <motion.section
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="mb-12"
+        >
+          <FeaturedProduct />
+        </motion.section>
+
+        {/* Banner */}
+        <motion.section
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="mb-12"
+        >
+          <Banner />
+        </motion.section>
+
+        {/* Contact Us */}
+        <motion.section
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="mb-12"
+        >
+          <ContactUs />
+        </motion.section>
+
+        {/* Newsletter */}
+        <motion.section
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="mb-16"
+        >
+          <motion.h2
+            variants={fadeLeft}
+            className="text-2xl md:text-3xl font-semibold mb-4 text-center"
+          >
+            Join Our Newsletter
+          </motion.h2>
+          <NewsLetter />
+        </motion.section>
+      </motion.div>
+    </div>
   );
 };
 
